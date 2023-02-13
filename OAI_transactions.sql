@@ -28,6 +28,9 @@ SET DEPTNO = (SELECT DEPTNO FROM DEPT where DNAME = 'RESEARCH')WHERE ENAME = 'BL
 -- ***************************************************************************************************
 
 -- Q6:Augmenter de 100€ les salariés qui gagnent le minimum
+UPDATE AVIATION.EMP
+SET  SAL=SAL +100
+WHERE SAL =(SELECT MIN(SAL) FROM EMP);
 -- ***************************************************************************************************
 
 -- Q7: Supprimer les départements qui n’ont pas de salariés

@@ -13,7 +13,10 @@ VALUES(30, 'NewDept', 'DTC');
 -- fontionne pas car le dept 30 n'existe déjà dans la table
 -- ***************************************************************************************************
 
--- Q4:Supprimer le département 10
+-- Q4:Supprimer le département 10:
+DELETE FROM AVIATION.DEPT
+WHERE DEPTNO=10;
+
 -- ***************************************************************************************************
 
 -- Bonus : vous aurez besoin de sous-requêtes pour résoudre ces problèmes.

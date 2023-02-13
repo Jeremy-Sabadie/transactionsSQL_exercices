@@ -34,6 +34,16 @@ WHERE SAL =(SELECT MIN(SAL) FROM EMP);
 -- ***************************************************************************************************
 
 -- Q7: Supprimer les départements qui n’ont pas de salariés
+DELETE
+FROM
+	AVIATION.DEPT
+WHERE
+	DEPTNO NOT IN (
+	SELECT DISTINCT
+		DEPTNO
+	FROM
+		EMP
+	);
 -- ***************************************************************************************************
 
 -- Q8: Augmenter de 100€ les employés qui travaillent à DALLAS

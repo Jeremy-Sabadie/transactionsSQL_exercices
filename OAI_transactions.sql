@@ -9,20 +9,22 @@ VALUES(47, 'JOHN', 8, 'SALESMAN', 100, current_timestamp(), NULL, 10);
 -- Q3: Insérer un nouvel employé dans le département 50.
 INSERT INTO AVIATION.DEPT
 (DEPTNO, DNAME, LOC)
-VALUES(30, 'NewDept', 'DTC');
+VALUES(30, 'testDept', 'Paris');
 -- fontionne pas car le dept 30 n'existe déjà dans la table
 -- ***************************************************************************************************
 
 -- Q4:Supprimer le département 10:
 DELETE FROM AVIATION.DEPT
 WHERE DEPTNO=10;
-
+-- Ne passe pas car contrainte de clef étrangère.
 -- ***************************************************************************************************
 
 -- Bonus : vous aurez besoin de sous-requêtes pour résoudre ces problèmes.
 -- ***************************************************************************************************
 
 -- Q5:Affecter l’employé dont le nom est BLAKE au département dont le nom RESEARCH
+UPDATE OAI.EMP
+SET DEPTNO = (SELECT DEPTNO FROM DEPT where DNAME = 'RESEARCH')WHERE ENAME = 'BLAKE';
 -- ***************************************************************************************************
 
 -- Q6:Augmenter de 100€ les salariés qui gagnent le minimum
@@ -35,6 +37,7 @@ WHERE DEPTNO=10;
 -- ***************************************************************************************************
 
 -- Q9:Réaliser les changements ci-après dans une même transaction. Prévoir la possibilité d'annuler ces changements
+
 -- ***************************************************************************************************
 
 

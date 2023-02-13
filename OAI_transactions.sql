@@ -47,6 +47,9 @@ WHERE
 -- ***************************************************************************************************
 
 -- Q8: Augmenter de 100€ les employés qui travaillent à DALLAS
+UPDATE AVIATION.EMP
+SET  SAL= SAL +100
+WHERE DEPTNO =(SELECT DEPTNO FROM  DEPT d WHERE d.LOC='DALLAS')
 -- ***************************************************************************************************
 
 -- Q9:Réaliser les changements ci-après dans une même transaction. Prévoir la possibilité d'annuler ces changements

@@ -53,7 +53,43 @@ WHERE DEPTNO =(SELECT DEPTNO FROM  DEPT d WHERE d.LOC='DALLAS')
 -- ***************************************************************************************************
 
 -- Q9:Réaliser les changements ci-après dans une même transaction. Prévoir la possibilité d'annuler ces changements
+START transaction
+-- ***************************************************************************************************
 
+--01:	Insérer un nouveau département (le numéro 50)
+
+CREATE  AVIATION.DEPT(DEPTNO,dname) 
+VALUES(50,'azerty');
+-- ***************************************************************************************************
+
+--02:	Affecter tous les employés du département 20 au département 50
+UPDATE EMP
+SET dept.DEPTNO =50
+WHERE dept.DEPTNO =20;
+-- ***************************************************************************************************
+
+--03:	Supprimer le département 20
+DELETE AVIATION.DEPT
+WHERE DEPTNO=20;
+-- ***************************************************************************************************
+
+--04:	Vérifier en visualisant le contenu des tables
+SELECT * FROM AVIATION.EMP
+FROM AVIATION.DEPT d 
+-- ***************************************************************************************************
+
+--05:	Annuler la suppression du département 20
+rollback
+-- ***************************************************************************************************
+
+--06:	Valider les changements en suspens pour les rendre permanents
+commit
+-- ***************************************************************************************************
+
+--07:	Vérifier en visualisant le contenu des tables.
+SELECT * FROM AVIATION.EMP
+FROM AVIATION.DEPT d 
+-- ***************************************************************************************************
 -- ***************************************************************************************************
 
 

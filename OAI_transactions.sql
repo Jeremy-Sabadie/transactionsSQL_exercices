@@ -56,37 +56,37 @@ WHERE DEPTNO =(SELECT DEPTNO FROM  DEPT d WHERE d.LOC='DALLAS')
 START transaction
 -- ***************************************************************************************************
 
---01:	Insérer un nouveau département (le numéro 50)
+--9.01:	Insérer un nouveau département (le numéro 50)
 
-CREATE  AVIATION.DEPT(DEPTNO,dname) 
+Insertion INTO  AVIATION.DEPT(DEPTNO,dname) 
 VALUES(50,'azerty');
 -- ***************************************************************************************************
 
---02:	Affecter tous les employés du département 20 au département 50
+--9.02:	Affecter tous les employés du département 20 au département 50
 UPDATE EMP
 SET dept.DEPTNO =50
 WHERE dept.DEPTNO =20;
 -- ***************************************************************************************************
-
---03:	Supprimer le département 20
+SAVEPOINT avDelete20
+--9.03:	Supprimer le département 20
 DELETE AVIATION.DEPT
 WHERE DEPTNO=20;
 -- ***************************************************************************************************
 
---04:	Vérifier en visualisant le contenu des tables
+--9.04:	Vérifier en visualisant le contenu des tables
 SELECT * FROM AVIATION.EMP
 FROM AVIATION.DEPT d 
 -- ***************************************************************************************************
 
---05:	Annuler la suppression du département 20
-rollback
+--9.05:	Annuler la suppression du département 20
+ROLLBACK TO SAVEPOINT avDelete20;
 -- ***************************************************************************************************
 
---06:	Valider les changements en suspens pour les rendre permanents
+--9.06:	Valider les changements en suspens pour les rendre permanents
 commit
 -- ***************************************************************************************************
 
---07:	Vérifier en visualisant le contenu des tables.
+--9.07:	Vérifier en visualisant le contenu des tables.
 SELECT * FROM AVIATION.EMP
 FROM AVIATION.DEPT d 
 -- ***************************************************************************************************
